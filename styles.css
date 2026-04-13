@@ -1,4 +1,4 @@
-/* Plik: green.css */
+/* Plik: styles.css (Domyślny motyw zielony) */
 /* Motyw zielony z zaokrąglonymi rogami i czcionką bezszeryfową */
 
 body {
@@ -51,4 +51,9 @@ footer {
     font-size: 0.9em;
     color: #666;
     margin-top: 40px;
+}
+
+/* Klasa pomocnicza do ukrywania elementów przez JavaScript */
+.hidden {
+    display: none;
 }
