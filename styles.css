@@ -53,5 +53,11 @@ footer {
 
 /* Klasa pomocnicza do ukrywania elementów przez JavaScript */
 .hidden {
+
+/* --- Style dla formularza (Zadanie 5) --- */
+.input-error {
+    border: 2px solid red !important;
+    background-color: #ffe6e6;
+}
     display: none;
 }
