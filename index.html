@@ -28,7 +28,37 @@
                 <a href="https://github.com/PL77429" target="_blank" rel="noopener noreferrer">GitHub</a> | 
             </p>
         </section>
-
+        
+       <section id="kontakt-formularz">
+            <h2>Napisz do mnie</h2>
+            <form id="contactForm" novalidate>
+                <div style="margin-bottom: 10px;">
+                    <label for="firstName">Imię:</label><br>
+                    <input type="text" id="firstName" name="firstName" style="width: 100%; max-width: 300px; padding: 5px;">
+                </div>
+                
+                <div style="margin-bottom: 10px;">
+                    <label for="lastName">Nazwisko:</label><br>
+                    <input type="text" id="lastName" name="lastName" style="width: 100%; max-width: 300px; padding: 5px;">
+                </div>
+                
+                <div style="margin-bottom: 10px;">
+                    <label for="email">E-mail:</label><br>
+                    <input type="email" id="email" name="email" style="width: 100%; max-width: 300px; padding: 5px;">
+                </div>
+                
+                <div style="margin-bottom: 10px;">
+                    <label for="message">Wiadomość:</label><br>
+                    <textarea id="message" name="message" rows="4" style="width: 100%; max-width: 300px; padding: 5px;"></textarea>
+                </div>
+                
+                <button type="submit" style="padding: 10px 20px; cursor: pointer; border-radius: 5px;">Wyślij</button>
+                
+                <div id="formErrors" class="hidden" style="color: red; font-weight: bold; margin-top: 15px;"></div>
+                <div id="formSuccess" class="hidden" style="color: green; font-weight: bold; margin-top: 15px;">Wiadomość została wysłana!</div>
+            </form>
+        </section>
+        
         <section id="o-mnie">
             <h2>O mnie</h2>
             <p>
