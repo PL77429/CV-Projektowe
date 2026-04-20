@@ -70,3 +70,9 @@ footer {
 .hidden {
     display: none;
 }
+
+/* --- Style dla formularza (Zadanie 5) --- */
+.input-error {
+    border: 2px solid red !important;
+    background-color: #ffe6e6;
+}
