@@ -1,0 +1,27 @@
+{
+  "umiejetnosci": [
+    "Podstawy SQL (zapytania, tworzenie baz danych)",
+    "C# (podstawy programowania obiektowego)",
+    "HTML5, CSS3 & JavaScript",
+    "Git i GitHub",
+    "Microsoft Office (Word, Excel)",
+    "Język angielski (B1)",
+    "Język polski (B2)",
+    "Język rosyjski (ojczysty)",
+    "Język ukraiński (ojczysty)"
+  ],
+  "projekty": [
+    {
+      "nazwa": "System apteki (SQL)",
+      "opis": "Baza danych do zarządzania lekami, klientami i sprzedażą."
+    },
+    {
+      "nazwa": "Strona portfolio (HTML/CSS/JS)",
+      "opis": "Strona prezentująca projekty, wykorzystująca walidację i fetch API."
+    },
+    {
+      "nazwa": "Wzmacniacz tranzystorowy",
+      "opis": "Projekt wykonany w Electronics Workbench."
+    }
+  ]
+}
