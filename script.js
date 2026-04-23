@@ -115,3 +115,48 @@ contactForm.addEventListener('submit', function(event) {
         contactForm.reset(); // Czyścimy pola po wysłaniu
     }
 });
+// --- 4. Pobieranie danych z pliku JSON (Zadanie 6) ---
+
+// Funkcja pobierająca i budująca listy
+function loadDataFromJson() {
+    // Używamy fetch API do pobrania pliku data.json
+    fetch('data.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Błąd ładowania pliku JSON');
+            }
+            return response.json(); // Parsowanie odpowiedzi do obiektu JS
+        })
+        .then(data => {
+            // --- Budowanie listy umiejętności ---
+            const skillsList = document.getElementById('skillsList');
+            if (skillsList) {
+                skillsList.innerHTML = ''; // Czyszczenie listy na starcie
+                // Przechodzimy przez tablicę umiejętności z JSON
+                data.umiejetnosci.forEach(skill => {
+                    const li = document.createElement('li');
+                    li.textContent = skill;
+                    skillsList.appendChild(li); // Dodanie elementu do strony
+                });
+            }
+
+            // --- Budowanie listy projektów ---
+            const projectsList = document.getElementById('projectsList');
+            if (projectsList) {
+                projectsList.innerHTML = ''; // Czyszczenie listy na starcie
+                // Przechodzimy przez tablicę projektów z JSON
+                data.projekty.forEach(projekt => {
+                    const li = document.createElement('li');
+                    // Używamy innerHTML, aby pogrubić nazwę projektu
+                    li.innerHTML = `<strong>${projekt.nazwa}:</strong> ${projekt.opis}`;
+                    projectsList.appendChild(li); // Dodanie elementu do strony
+                });
+            }
+        })
+        .catch(error => {
+            console.error('Wystąpił błąd podczas pobierania danych:', error);
+        });
+}
+
+// Uruchamiamy funkcję od razu po załadowaniu całej struktury HTML
+document.addEventListener('DOMContentLoaded', loadDataFromJson);
