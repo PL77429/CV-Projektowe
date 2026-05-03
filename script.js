@@ -160,3 +160,83 @@ function loadDataFromJson() {
 
 // Uruchamiamy funkcję od razu po załadowaniu całej struktury HTML
 document.addEventListener('DOMContentLoaded', loadDataFromJson);
+
+// --- 5. Obsługa Local Storage (Zadanie 7) ---
+
+// Pobranie elementów formularza notatek z DOM
+const noteInput = document.getElementById('noteInput');
+const addNoteBtn = document.getElementById('addNoteBtn');
+const notesList = document.getElementById('notesList');
+
+// Pobieranie zapisanych notatek z Local Storage
+// Jeśli nic nie ma, tworzymy pustą tablicę
+let notes = JSON.parse(localStorage.getItem('mojeNotatki')) || [];
+
+// Funkcja odpowiedzialna za renderowanie (rysowanie) listy notatek na stronie
+function renderNotes() {
+    if (!notesList) return; // Zabezpieczenie
+    
+    notesList.innerHTML = ''; // Czyszczenie aktualnej listy
+    
+    // Przechodzimy przez każdą notatkę w tablicy
+    notes.forEach((note, index) => {
+        const li = document.createElement('li');
+        li.style.marginBottom = '8px';
+        li.style.padding = '10px';
+        li.style.background = 'rgba(0,0,0,0.05)'; // Lekko szare tło pasujące do każdego motywu
+        li.style.borderRadius = '5px';
+        li.style.display = 'flex';
+        li.style.justifyContent = 'space-between';
+        li.style.alignItems = 'center';
+
+        // Tekst notatki
+        const span = document.createElement('span');
+        span.textContent = note;
+
+        // Przycisk usuwania
+        const deleteBtn = document.createElement('button');
+        deleteBtn.textContent = 'Usuń';
+        deleteBtn.style.background = '#ff4d4d'; // Czerwony kolor
+        deleteBtn.style.color = 'white';
+        deleteBtn.style.border = 'none';
+        deleteBtn.style.padding = '5px 10px';
+        deleteBtn.style.cursor = 'pointer';
+        deleteBtn.style.borderRadius = '3px';
+
+        // Nasłuchiwanie na kliknięcie "Usuń"
+        deleteBtn.addEventListener('click', () => {
+            // Usuwamy 1 element z tablicy na danej pozycji (index)
+            notes.splice(index, 1);
+            saveAndRender(); // Zapisujemy zmiany i odświeżamy listę
+        });
+
+        li.appendChild(span);
+        li.appendChild(deleteBtn);
+        notesList.appendChild(li);
+    });
+}
+
+// Funkcja zapisująca dane do Local Storage i odświeżająca widok
+function saveAndRender() {
+    // Local Storage przechowuje tylko tekst, więc używamy JSON.stringify
+    localStorage.setItem('mojeNotatki', JSON.stringify(notes));
+    renderNotes();
+}
+
+// Nasłuchiwanie na kliknięcie przycisku "Dodaj"
+if (addNoteBtn) {
+    addNoteBtn.addEventListener('click', () => {
+        const newNote = noteInput.value.trim();
+        // Sprawdzamy czy pole nie jest puste
+        if (newNote !== '') {
+            notes.push(newNote); // Dodanie do tablicy
+            noteInput.value = ''; // Czyszczenie pola input
+            saveAndRender(); // Zapis i odświeżenie
+        }
+    });
+}
+
+// Inicjalne uruchomienie renderowania po załadowaniu strony
+document.addEventListener('DOMContentLoaded', () => {
+    renderNotes();
+});
