@@ -115,7 +115,7 @@ contactForm.addEventListener('submit', function(event) {
         // Zbieramy dane z formularza do obiektu FormData
         const formData = new FormData(contactForm);
 
-        // Wysyłamy żądanie POST za pomocą fetch() na Twój endpoint Formspree
+        // Wysyłamy żądanie POST za pomocą fetch() na endpoint Formspree
         fetch('https://formspree.io/f/mwvywaev', {
             method: 'POST',
             body: formData,
