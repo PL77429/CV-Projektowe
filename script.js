@@ -116,7 +116,7 @@ contactForm.addEventListener('submit', function(event) {
         const formData = new FormData(contactForm);
 
         // Wysyłamy żądanie POST za pomocą fetch() na Twój endpoint Formspree
-        fetch('https://formspree.io/f/TUTAJ_TWOJ_KOD', {
+        fetch('https://formspree.io/f/mwvywaev', {
             method: 'POST',
             body: formData,
             headers: {
