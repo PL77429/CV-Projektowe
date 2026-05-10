@@ -109,10 +109,38 @@ contactForm.addEventListener('submit', function(event) {
         // Pokazujemy błędy
         formErrors.innerHTML = errors.join('<br>');
         formErrors.classList.remove('hidden');
-    } else {
-        // Sukces - brak błędów
-        formSuccess.classList.remove('hidden');
-        contactForm.reset(); // Czyścimy pola po wysłaniu
+} else {
+        // ZADANIE 8: Sukces - brak błędów lokalnych, wysyłamy na backend!
+        
+        // Zbieramy dane z formularza do obiektu FormData
+        const formData = new FormData(contactForm);
+
+        // Wysyłamy żądanie POST za pomocą fetch() na Twój endpoint Formspree
+        fetch('https://formspree.io/f/TUTAJ_TWOJ_KOD', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                // Backend potwierdził odebranie danych
+                formSuccess.innerHTML = 'Wiadomość została wysłana na serwer!';
+                formSuccess.classList.remove('hidden');
+                contactForm.reset(); // Czyścimy pola
+            } else {
+                // Błąd serwera
+                formErrors.innerHTML = 'Wystąpił błąd podczas wysyłania do serwera.';
+                formErrors.classList.remove('hidden');
+            }
+        })
+        .catch(error => {
+            // Błąd sieci (np. brak internetu)
+            console.error('Błąd połączenia:', error);
+            formErrors.innerHTML = 'Błąd połączenia z serwerem.';
+            formErrors.classList.remove('hidden');
+        });
     }
 });
 // --- 4. Pobieranie danych z pliku JSON (Zadanie 6) ---
